@@ -4,6 +4,13 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+// Serving middlewares:
+const loginController = require('./controllers/loginController')
+
+// Doing JSON parsing
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const MONGO_URI = 'mongodb+srv://Stan:TGJQJ2YK8pTgZjwC@gathercluster.59lrgnt.mongodb.net/?retryWrites=true&w=majority'
 
 mongoose.connect(MONGO_URI, {
@@ -30,6 +37,25 @@ app.get("/", (req, res) => {
     .sendFile(path.resolve(__dirname, "../dist/index.html"));
 });
 
+// Sign Up Request
+app.post('/signup', loginController.createUser, (req, res) => {
+  // Placeholder.. setup middleware first 
+  res.status(200).send(res.locals.userId)
+})
+
+// Global error handler:
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).send(errorObj.message);
+});
+
+// Listening port
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
