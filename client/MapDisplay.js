@@ -1,15 +1,29 @@
 import React from 'react'
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
+// DOCUMENTATION
+// Places API 
+// https://developers.google.com/maps/documentation/places/web-service/search-nearby
+
+// @react-google-maps/api - Careful! There is a google-maps-react package that is deprecated, make sure you're looking at this version if you check documentation
+// https://react-google-maps-api-docs.netlify.app/
+
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '800px',
+  height: '800px',
+  borderRadius:'10px',
+  border: '1px solid grey'
 };
 
 const center = {
   lat: 40.747592210736535,
   lng: -73.99312081547488
 };
+
+const onLoad = marker => {
+  console.log('marker: ', marker)
+}
 
 function MapDisplay() {
   return (
@@ -19,17 +33,32 @@ function MapDisplay() {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={18}
       >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <>
-    <div>
+        <Marker 
+              onLoad={onLoad}
+              position={center}
+              animation="bounce"
+              clickableIcons='./assets/gather_logo.png'
 
-    </div>
-        </>
+
+        />
       </GoogleMap>
     </LoadScript>
   )
 }
+const HangTypes ={
+foodAndFun : "bar",
+study : "cafe",
+activity : "tourist_attraction",
+}
+
+
+
+
+
+
+
+
 
 export default React.memo(MapDisplay)
