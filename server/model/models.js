@@ -21,7 +21,10 @@ mongoose.connect(MONGO_URI, {
   const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    profile : 
+    profile : String,
+    location: String, 
+    cookie : String,
+    hangs : []
   });
   
   
