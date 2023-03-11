@@ -25,7 +25,15 @@ mongoose.connect(MONGO_URI, {
     cookie : String,
     hangs : []
   });
+
+  const User = mongoose.model('user', userSchema)
   
+const hangSchema = new Schema({
+  geoCoords : Array,
+  users : Array // array of user objects with fields name, location to track which user initialized the hang search and their location when they did
+})
+
+const Hang = mongoose.model('hang',hangSchema )
   
   const SALT_WORK_FACTOR = 10;
   
@@ -52,6 +60,11 @@ mongoose.connect(MONGO_URI, {
       if(err) return cb(err)
       cb(null, isMatch)
     })
+  }
+
+  module.exports = {
+    User, 
+    Hang
   }
 
 
