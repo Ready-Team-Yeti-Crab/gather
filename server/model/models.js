@@ -15,6 +15,15 @@ mongoose.connect(MONGO_URI, {
   .catch(err => console.log(err));
 
 
-
-
+const Schema = mongoose.Schema;
+  
+const userSchema = new Schema({
+  username: {type: String, required: true, unique: true},
+  password: {type: String, required: true},
+  profile : String,
+  location: String, 
+  cookie : String,
+  hangs : []
+});
+module.exports = mongoose.model('User', userSchema)
 
