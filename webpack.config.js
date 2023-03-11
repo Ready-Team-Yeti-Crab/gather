@@ -64,6 +64,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "client", "index.html"),
     }),
-    new ESLintPlugin()
+    new ESLintPlugin(),
   ],
 }
