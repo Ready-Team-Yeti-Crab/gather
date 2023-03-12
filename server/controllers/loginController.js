@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 
 const loginController = {}
 
-// Create User controller (Variables: username & password)
+// Create User controller 
 loginController.createUser = (req, res, next) => {
   const { username, password } = req.body
   if (username && password) {
@@ -83,7 +83,7 @@ loginController.verifyUser = (req, res, next) => {
   const { username, password } = req.body;
   User.find({username: username})
     .then((data) => {
-      // I'm struggling to redirect to signup. For now, I have an error sent to frontend alerting that username/password doesn't exist
+      // Not sure how to redirect to signup. For now, I have an error sent to frontend alerting that username/password doesn't exist
       if (data[0] === undefined) {
         return next({
           log: 'User not found',
@@ -118,13 +118,5 @@ loginController.verifyUser = (req, res, next) => {
       })
     })
 }
-
-// Compare password middleware with salt VIC: CHECK THE LOGIC HERE ON VARIABLE NAMES
-// loginController.comparePassword = function(candidatePassword, cb) {
-//   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-//     if(err) return cb(err)
-//     cb(null, isMatch)
-//   })
-// }
 
 module.exports = loginController;
