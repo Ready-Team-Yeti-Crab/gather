@@ -1,15 +1,15 @@
 import React from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import axios from 'axios'
-// import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 
-
-// const originCoords = useSelector((state)=> state.userIconContainer)
-// console.log(originCoords)
 
 
 function findMidpoint(arrayOfGeocodes){
-
+  const originCoords = useSelector((state)=> state.userIcon.addedToSessions)
+  console.log('this is origin Coords',originCoords)
+  
+  
   // variables to hold the sum of
   let xSums = 0;
   let ySums = 0;
