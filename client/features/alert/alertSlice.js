@@ -6,7 +6,7 @@ const initialState = {
 
 //https://redux-toolkit.js.org/tutorials/quick-start
 
-export const counterSlice = createSlice({
+export const alertSlice = createSlice({
 	name: 'counter',
 	initialState,
 	reducers: {
@@ -27,6 +27,6 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount } = alertSlice.actions;
 
-export default counterSlice.reducer;
+export default alertSlice.reducer;

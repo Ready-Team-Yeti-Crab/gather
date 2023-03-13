@@ -1,22 +1,30 @@
 import React from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { register, login } from './loginPageSlice';
+import './loginPage.scss';
 
-export function LoginPage() {
-	//subscribe to alert state
-	// const count = useSelector((state) => state.counter.value);
+export default function LoginPage() {
+	//MAKE SURE TO IMPORT USESELECTOR IF YOU WANT TO ACCESS STATE
+	// const val = useSelector((state) => state.property.value);
 	const dispatch = useDispatch();
 	let username = '';
 	let password = '';
 	return (
 		<div>
-			<div>
+			hi
+			<div id='loginWrapper'>
 				<input
 					type='text'
 					placeholder='Username'
 					onChange={(e) => (username = e.target.value)}
 				></input>
+				<input
+					type='text'
+					placeholder='Password'
+					onChange={(e) => (password = e.target.value)}
+				></input>
+				<br />
+
 				<button
 					label='Register'
 					onClick={() =>
@@ -25,12 +33,6 @@ export function LoginPage() {
 				>
 					Register
 				</button>
-
-				<input
-					type='text'
-					placeholder='Password'
-					onChange={(e) => (password = e.target.value)}
-				></input>
 				<button
 					label='Login'
 					onClick={() =>
