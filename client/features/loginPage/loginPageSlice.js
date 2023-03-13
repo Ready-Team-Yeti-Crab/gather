@@ -4,33 +4,26 @@ const initialState = {};
 
 //https://redux-toolkit.js.org/tutorials/quick-start
 
+//make fetch call passing in username and password
+
+//action should look like: {type: 'loginPage/register', payload : {username: 'username', password: 'password'}}
 export const loginPageSlice = createSlice({
 	name: 'loginPage',
 	initialState,
 	reducers: {
 		register: (state, action) => {
-			//make fetch call passing in username and password
 			fetch('/signup', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(action.payload),
-			});
-			//update alert state
-
-			// Redux Toolkit allows us to write "mutating" logic in reducers. It
-			// doesn't actually mutate the state because it uses the Immer library,
-			// which detects changes to a "draft state" and produces a brand new
-			// immutable state based off those changes
-
-			// action === {type: 'register', payload: {username: username, password: password}}
+			}).then((res) => console.log(res));
 		},
 		login: (state, action) => {
-			//CONFIRM WITH BACKEND REGARDING EXISING USER LOGIN ENDPOINT
 			fetch('/login', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(action.payload),
-			});
+			}).then((res) => console.log(res));
 		},
 	},
 });
