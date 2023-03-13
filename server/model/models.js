@@ -21,7 +21,7 @@ const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     profile : String,
-    location: String, 
+    location: Object, 
     cookie : String,
     hangs : Array,
   });
