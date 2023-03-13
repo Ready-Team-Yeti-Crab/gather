@@ -30,7 +30,7 @@ mongoose
 	.then(() => console.log('Connected to Mongo DB.'))
 	.catch((err) => console.log(err));
 
-// SERVE STATIC AND PARSERS
+// // SERVE STATIC AND PARSERS
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, '../dist')));
 	app.use(express.json());
@@ -53,14 +53,14 @@ if (process.env.NODE_ENV === 'production') {
 // })
 
 // On general get request, we are serving the client the signup/login html (*we are checking if they have a session, if so we redirect them to our 'main')
-app.get("/", loginController.isLoggedIn, (req, res) => {
+app.get("/original", loginController.isLoggedIn, (req, res) => {
   // if res.locals.authorized is true, redirect to main
   if (res.locals.authorized) {
-    return res.status(200).send({location: 'sent to main page'})
+    return res.status(200).send({location: 'main'})
   }
   return res
-    .status(200)
-    .sendFile(path.resolve(__dirname, "../dist/index.html"));
+    .status(200).send({location: 'signup'})
+    // .sendFile(path.resolve(__dirname, "../dist/index.html"));
 });
 
   
