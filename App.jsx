@@ -27,15 +27,14 @@ function App() {
   else {
     renderComp.push(< MapDisplay/>)
   }
-  
 
 	return (
 		<>
 			<div id='app'>
 				REACT APP LOADED
         {renderComp}
-				{/* <LoginPage /> */}
-				{/* <MapDisplay /> */}
+				{/* <LoginPage />
+				<MapDisplay /> */}
 			</div>
 		</>
 	);

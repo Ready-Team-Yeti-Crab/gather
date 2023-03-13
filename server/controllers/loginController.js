@@ -2,14 +2,28 @@
 const {User} = require('../model/models.js')
 const Session = require('../model/sessionsModel')
 const bcrypt = require('bcryptjs')
+const axios = require('axios')
+const { render } = require('react-dom')
 
 const loginController = {}
 
 // Create User controller 
-loginController.createUser = (req, res, next) => {
-  const { username, password } = req.body
+loginController.createUser = async (req, res, next) => {
+  const { username, password, location} = req.body
+
+  // prepare the address for the geocode reversal call
+const convertedAddress = location.replace(/[\s,]+/g, '%20');
+
+
+// Pulling geocoordinates from address
+const locationObj = await axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${convertedAddress}}&key=AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o`)
+
+  // getting username and password
   if (username && password) {
-    User.create({username: username, password: password})
+    User.create({username: username, password: password, location : {
+      address : locationObj.data.results[0]['formatted_address'],
+      geo : locationObj.data.results[0]['geometry']['location']
+    }})
       .then((() => next()))
       .catch((err => {
         return next({
@@ -23,6 +37,7 @@ loginController.createUser = (req, res, next) => {
     res.redirect(400, '/signup');
   }
 }
+
 
 // Setting session cookie
 loginController.setSSIDCookie = (req, res, next) => {
