@@ -10,34 +10,71 @@ const loginController = {}
 // Create User controller 
 loginController.createUser = async (req, res, next) => {
   const { username, password, location} = req.body
-
+  
   // prepare the address for the geocode reversal call
-const convertedAddress = location.replace(/[\s,]+/g, '%20');
-
-
-// Pulling geocoordinates from address
-const locationObj = await axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${convertedAddress}}&key=AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o`)
-
+  const convertedAddress = location.replace(/[\s,]+/g, '%20');
+  
+  
+  // Pulling geocoordinates from address
+  const locationObj = await axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${convertedAddress}}&key=AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o`)
+  
   // getting username and password
   if (username && password) {
     User.create({username: username, password: password, location : {
       address : locationObj.data.results[0]['formatted_address'],
       geo : locationObj.data.results[0]['geometry']['location']
     }})
-      .then((() => next()))
-      .catch((err => {
-        return next({
-          log: `Error in creation of user ${err}`,
-          status: 500,
-          message: { err: 'An error occurred' },
-        })
-      }))
+    .then((() => next()))
+    .catch((err => {
+      return next({
+        log: `Error in creation of user ${err}`,
+        status: 500,
+        message: { err: 'An error occurred' },
+      })
+    }))
   }
   else {
     res.redirect(400, '/signup');
   }
 }
+// Update user location: 
+loginController.changeLocation = async (req, res, next) => {
+  const { location } = req.body;
+  // prepare the address for the geocode reversal call
+  const convertedAddress = location.replace(/[\s,]+/g, '%20');
+  // Pulling geocoordinates from address
+  const locationObj = await axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${convertedAddress}}&key=AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o`)
 
+  User.findByIdAndUpdate(req.cookies.ssid, {location : {
+    address : locationObj.data.results[0]['formatted_address'],
+    geo : locationObj.data.results[0]['geometry']['location']
+  }})
+    .then((data) => {
+      return next()
+    })
+    .catch((err) => {
+      return next({
+        log: `Error in finding user and updating through cookie id ${err}`,
+        status: 500,
+        message: { err: 'An error occurred' },
+      })
+    })
+
+  // User.updateOne({_id: o_id}, {address : locationObj.data.results[0]['formatted_address'], geo : locationObj.data.results[0]['geometry']['location']})
+  //   .then((data) => {
+  //     console.log(req.cookies.ssid)
+  //     return next()
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //     return next({
+  //       log: `Error in updating location in changeLocation ${err}`,
+  //       status: 500,
+  //       message: { err: 'An error occurred' },
+  //     })
+  //   })
+    
+}
 
 // Setting session cookie
 loginController.setSSIDCookie = (req, res, next) => {
@@ -139,5 +176,6 @@ loginController.verifyUser = (req, res, next) => {
       })
     })
 }
+
 
 module.exports = loginController;

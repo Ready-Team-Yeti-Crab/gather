@@ -1,10 +1,10 @@
 
 import React, { useEffect } from "react";
-import MapDisplay from "./client/features/MapDisplay";
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 // import Counter from "./client/features/counter/Counter"
 import LoginPage from "./client/features/loginPage/LoginPage"
+import MainPage from "./client/features/mainPage/MainPage";
 import { pageRender } from "./client/features/loginPage/loginPageSlice"
 
 
@@ -25,7 +25,7 @@ function App() {
     renderComp.push(< LoginPage/>)
   }
   else {
-    renderComp.push(< MapDisplay/>)
+    renderComp.push(< MainPage/>)
   }
 
 	return (

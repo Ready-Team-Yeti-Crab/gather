@@ -3,8 +3,10 @@ import React from 'react';
 // import { gather, login } from './mainPageSlice';
 // import './loginPage.scss';
 // import googleMap from '../MapDisplay.js';
+import MapDisplay from '../MapDisplay'
+// import UpdateUserInfo from '../updateUserInfo/UpdateUserInfo'
 
-export default function LoginPage() {
+export default function MainPage() {
 	//MAKE SURE TO IMPORT USESELECTOR IF YOU WANT TO ACCESS STATE
 	// const totalUsers = useSelector((state) => state.mainPage.totalUsers);
 	// const selectedUsers = useSelector((state) => state.mainPage.selectedUsers);
@@ -12,8 +14,10 @@ export default function LoginPage() {
 
 	return (
 		<div>
-			hi!
+			Main Page!
 			<div id='mainWrapper'>
+				{/* <UpdateUserInfo /> */}
+				<MapDisplay />
 				{/* {googleMap}
 				<button
 					label='Gather'
