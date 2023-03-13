@@ -28,7 +28,7 @@ export const UserIconContainer = () => {
 	console.log(friends);
 	//don't need this. just for tracking friends easier in state
 	const dispatch = useDispatch();
-	dispatch(setFriends(friends));
+	dispatch(setFriends(friends.friendList));
 
 	return (
 		<section className='friends-list'>

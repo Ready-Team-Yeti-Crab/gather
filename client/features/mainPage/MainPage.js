@@ -12,7 +12,7 @@ export default function LoginPage() {
 
 	return (
 		<div>
-			hi!
+			This is MainPage.js
 			<div id='mainWrapper'>
 				{/* {googleMap}
 				<button
