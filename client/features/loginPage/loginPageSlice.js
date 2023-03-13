@@ -18,14 +18,17 @@ export const loginPageSlice = createSlice({
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(action.payload),
-			}).then((res) => console.log(res));
+			}).then(() => {
+				// console.log(res)
+				window.location.reload(false)
+			});
 		},
 		login: (state, action) => {
 			fetch('/login', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(action.payload),
-			}).then((res) => console.log(res));
+			}).then(() => window.location.reload(false));
 		},
     pageRender: (state, action) => {
       if (action.payload === 'signup') {

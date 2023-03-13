@@ -93,6 +93,10 @@ app.get('/friends', infoReqController.getFriends, infoReqController.parseFriends
   res.status(200).send(res.locals.infoForSending);
 })
 
+// Update user location
+app.patch('/changelocation', loginController.changeLocation, (req, res, next) => {
+	res.sendStatus(200)
+})
 
 // Global error handler:
 app.use((err, req, res, next) => {
