@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	addedToSession: new Map(),
+	addedToSession: {},
+
 	//get username from userIconContainer
 };
 
@@ -18,10 +19,12 @@ export const userIconSlice = createSlice({
 			// which detects changes to a "draft state" and produces a brand new
 			// immutable state based off those changes
 
-			if (state.addedToSession.has(action.payload)) {
-				state.addedToSession.delete();
+			if (state.addedToSession[action.payload.username]) {
+				console.log('username found, unselecting...');
+				delete state.addedToSession[action.payload];
 			} else {
-				state.addedToSession.set(action.payload, true);
+				state.addedToSession[action.payload.username] = action.payload.location;
+				console.log('username not found, selecting...');
 			}
 		},
 	},

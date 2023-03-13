@@ -2,16 +2,26 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { selectUser } from './userIconSlice';
-
-const UserIcon = ({ username }) => {
+import { useState } from 'react';
+const UserIcon = ({ username, location }) => {
 	const dispatch = useDispatch();
+	// let amISelected = useSelector((state) => state.addedToSession);
+	const [bgcolor, setbgcolor] = useState('antiquewhite');
 
 	return (
 		<div>
 			<div>
 				<button
 					className='userButton'
-					onClick={() => dispatch(selectUser(username))}
+					onClick={() => {
+						let tempColor = bgcolor === 'grey' ? 'antiquewhite' : 'grey';
+						dispatch(selectUser({ username: username, location: location }));
+						setbgcolor(tempColor);
+					}}
+					// color = bgcolor == 'green' ? 'antiquewhite' : 'green';
+					// setbgColor(color);
+
+					style={{ backgroundColor: bgcolor }}
 				>
 					{username}
 				</button>
