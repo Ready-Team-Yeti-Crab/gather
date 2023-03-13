@@ -12,6 +12,7 @@ export default function LoginPage() {
 	let username = '';
 	let password = '';
 	let location = '';
+
 	return (
 		<div>
 			This is LoginPage.js
@@ -35,22 +36,25 @@ export default function LoginPage() {
 
 				<button
 					label='Register'
-					onClick={() =>
-						dispatch(
+					onClick={() => {
+            dispatch(
 							register({
 								username: username,
 								password: password,
 								location: location,
 							})
 						)
+          }
+						
 					}
 				>
 					Register
 				</button>
 				<button
 					label='Login'
-					onClick={() =>
+					onClick={() => {
 						dispatch(login({ username: username, password: password }))
+					}
 					}
 				>
 					Login
