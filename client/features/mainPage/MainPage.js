@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserIconContainer } from '../userIconContainer/UserIconContainer';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { gather, login } from './mainPageSlice';
 // import './loginPage.scss';
@@ -11,13 +12,16 @@ export default function MainPage() {
 	// const totalUsers = useSelector((state) => state.mainPage.totalUsers);
 	// const selectedUsers = useSelector((state) => state.mainPage.selectedUsers);
 	// const dispatch = useDispatch();
-
 	return (
 		<div>
 			Main Page!
 			<div id='mainWrapper'>
 				{/* <UpdateUserInfo /> */}
 				<MapDisplay />
+			This is MainPage.js
+			</div>
+			<div id='mainWrapper'>
+				<UserIconContainer />
 				{/* {googleMap}
 				<button
 					label='Gather'
@@ -25,5 +29,5 @@ export default function MainPage() {
 				></button> */}
 			</div>
 		</div>
-	);
+	)
 }

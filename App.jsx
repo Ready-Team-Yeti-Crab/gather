@@ -9,7 +9,7 @@ import { pageRender } from "./client/features/loginPage/loginPageSlice"
 
 
 function App() {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	// Going to do useEffect so that, on render, it pulls the information on which page to go to
 	useEffect(() => {
 		axios.get("http://localhost:3000/original")
@@ -32,7 +32,7 @@ function App() {
 		<>
 			<div id='app'>
 				REACT APP LOADED
-        {renderComp}
+				{renderComp}
 				{/* <LoginPage />
 				<MapDisplay /> */}
 			</div>
