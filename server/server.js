@@ -77,14 +77,15 @@ app.post('/login', loginController.verifyUser, loginController.setSSIDCookie, lo
 
 // Main get request
 app.get('/main', loginController.isLoggedIn, (req, res) => {
-  // if res.locals.authorized is false, send to /signup
-  if (res.locals.authorized === false) {
-    res.status(200).send({location: 'sent back to signup page'})
-  }
-  // if res.locals.authorized is true, send main index
-  if (res.locals.authorized === true) {
-    res.status(200).send({location: 'sent to main page'})
-  }
+//   // if res.locals.authorized is false, send to /signup
+//   if (res.locals.authorized === false) {
+//     res.status(200).send({location: 'signup'})
+//   }
+//   // if res.locals.authorized is true, send main index
+//   if (res.locals.authorized === true) {
+//     res.status(200).send({location: 'main'})
+//   }
+	res.redirect('/original')
 })
 
 // Request info for rendering content (friendList and profileUser)
