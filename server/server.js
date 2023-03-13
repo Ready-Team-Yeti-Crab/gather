@@ -7,6 +7,7 @@ const PORT = 3000;
 
 // Serving middlewares:
 const loginController = require('./controllers/loginController')
+const infoReqController = require('./controllers/infoReqController')
 
 // Doing JSON parsing
 app.use(express.json());
@@ -65,6 +66,11 @@ app.get('/main', loginController.isLoggedIn, (req, res) => {
   if (res.locals.authorized === true) {
     res.status(200).send({location: 'sent to main page'})
   }
+})
+
+// Request info for rendering content (friendList and profileUser)
+app.get('/friends', infoReqController.getFriends, infoReqController.parseFriends, (req, res) => {
+  res.status(200).send(res.locals.infoForSending);
 })
 
 // Global error handler:

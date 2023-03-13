@@ -69,9 +69,15 @@ loginController.startSession = (req, res, next) => {
 loginController.isLoggedIn = (req, res, next) => {
   // Check if they have a cookie and if that cookie matches a session cookie id
   Session.find({cookieId: req.cookies.ssid})
-    .then(() => {
-      res.locals.authorized = true;
-      return next();
+    .then((data) => {
+      if (data[0] === undefined) {
+        res.locals.authorized = false;
+        return next();
+      }
+      else {
+        res.locals.authorized = true;
+        return next();
+      }
     })
     .catch(() => {
       res.locals.authorized = false;
@@ -101,7 +107,7 @@ loginController.verifyUser = (req, res, next) => {
             }
             else {
               return next({
-                log: 'User not found',
+                log: 'Password incorrect',
                 status: 401,
                 message: { err: 'Password is incorrect' },
               })
