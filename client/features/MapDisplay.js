@@ -1,13 +1,12 @@
 import React from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import axios from 'axios'
+// import axios from 'axios'
 import {useSelector} from 'react-redux'
 
 
 
 function findMidpoint(arrayOfGeocodes){
 
-  
   // variables to hold the sum of
   let xSums = 0;
   let ySums = 0;
@@ -70,7 +69,8 @@ const onLoad = marker => {
 
 function MapDisplay() {
   const originCoords = useSelector((state)=> state.userIcon.addedToSession)
-
+  let hangSpot = findMidpoint(Object.values(originCoords));
+  
   return (
     <>
     <div>
@@ -79,15 +79,12 @@ function MapDisplay() {
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={{
-          lat : 40.74763969089943, 
-          lng : -73.99310904334705
-        }}
+        center={hangSpot}
         zoom={18}
       >
         <Marker 
               onLoad={onLoad}
-              position={Object.values(originCoords)}
+              position={hangSpot}
               animation="bounce"
               // icon = "https://pbs.twimg.com/profile_images/443395572783800322/nXTuit5o_400x400.jpeg"
               label = {{
