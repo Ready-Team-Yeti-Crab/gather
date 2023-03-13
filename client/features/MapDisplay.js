@@ -1,14 +1,11 @@
 import React from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import axios from 'axios'
+// import {useSelector} from 'react-redux'
 
 
-
-// DOCUMENTATION
-// Places API 
-// https://developers.google.com/maps/documentation/places/web-service/search-nearby
-
-// @react-google-maps/api - Careful! There is a google-maps-react package that is deprecated, make sure you're looking at this version if you check documentation
-// https://react-google-maps-api-docs.netlify.app/
+// const originCoords = useSelector((state)=> state.userIconContainer)
+// console.log(originCoords)
 
 
 function findMidpoint(arrayOfGeocodes){
@@ -30,7 +27,25 @@ function findMidpoint(arrayOfGeocodes){
   }
 }
 
+let label = [];
+const generateLabel = async () =>{
+
+    axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.883166%2C-73.853427&radius=1500&type=restaurant&key=AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o')
+    .then((data)=> {
+        let name = data.data.results[0]['name'];
+        let address = data.data.results[0]['vicinity'];
+        console.log(name, address)
+        label.push(`${name} ${address}`);
+    })
+    
+}
+generateLabel()
+console.log('label',label)
+
+
+// Pull from state
 const coordinates = [{lat : 40.71326030739842, lng: -74.00728359309215}, {lat : 40.74382577221735, lng: -73.99384133506773}]
+
 
 
 // const generateHang = async ()=>{
@@ -58,6 +73,8 @@ const onLoad = marker => {
 function MapDisplay() {
 
   return (
+    <>
+    <div>
     <LoadScript
       googleMapsApiKey='AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o'
     >
@@ -72,7 +89,7 @@ function MapDisplay() {
               animation="bounce"
               // icon = "https://pbs.twimg.com/profile_images/443395572783800322/nXTuit5o_400x400.jpeg"
               label = {{
-                text: 'Label',
+                text: {label},
                 color: "#4682B4",
                 fontSize: "16px",
                 fontWeight: "bold",
@@ -82,6 +99,8 @@ function MapDisplay() {
         />
       </GoogleMap>
     </LoadScript>
+    </div>
+    </>
   )
 }
 // const HangTypes ={
