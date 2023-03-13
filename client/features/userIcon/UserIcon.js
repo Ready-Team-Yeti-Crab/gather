@@ -1,28 +1,23 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from './userIconSlice';
+import { useDispatch } from 'react-redux';
+import { selectUser } from './userIconSlice';
 
-export function UserIcon() {
-  const count = useSelector((state) => state.usericon.value);
-  const dispatch = useDispatch();
+const UserIcon = ({ username }) => {
+	const dispatch = useDispatch();
 
-  return (
-    <div>
-      <div>
-        <button
-          aria-label='Increment value'
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label='Decrement value'
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-      </div>
-    </div>
-  );
-}
+	return (
+		<div>
+			<div>
+				<button
+					className='userButton'
+					onClick={() => dispatch(selectUser(username))}
+				>
+					{username}
+				</button>
+			</div>
+		</div>
+	);
+};
+
+export default UserIcon;

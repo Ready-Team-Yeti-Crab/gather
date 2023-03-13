@@ -15,20 +15,21 @@ export const UserIconContainer = () => {
 	} = useGetFriendsQuery();
 
 	let content;
-
+	let myWonderfulListofFriends = [];
 	if (isLoading) {
 		content = 'Loading!';
 	} else if (isSuccess) {
-		content = friends.friendList.map((friend) => (
-			<UserIcon key={friend._id} friend={friend} />
+		myWonderfulListofFriends = friends.friendList.slice();
+		content = myWonderfulListofFriends.map((friend) => (
+			<UserIcon key={friend._id} username={friend.username} />
 		));
 	} else if (isError) {
 		content = <div>{error.toString()}</div>;
 	}
-	console.log(friends);
+
 	//don't need this. just for tracking friends easier in state
 	const dispatch = useDispatch();
-	dispatch(setFriends(friends.friendList));
+	dispatch(setFriends(myWonderfulListofFriends));
 
 	return (
 		<section className='friends-list'>

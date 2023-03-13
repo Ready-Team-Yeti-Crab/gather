@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Counter from "./client/features/counter/Counter"
 import LoginPage from './client/features/loginPage/LoginPage';
 import { pageRender } from './client/features/loginPage/loginPageSlice';
-
+import MainPage from './client/features/mainPage/MainPage';
 function App() {
 	const dispatch = useDispatch();
 	// Going to do useEffect so that, on render, it pulls the information on which page to go to
@@ -22,6 +22,7 @@ function App() {
 		renderComp.push(<LoginPage />);
 	} else {
 		renderComp.push(<MapDisplay />);
+		renderComp.push(<MainPage />);
 	}
 
 	return (
