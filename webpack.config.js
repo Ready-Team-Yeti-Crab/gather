@@ -62,7 +62,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: path.join(__dirname, "client", "index.html"),
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'signup.html',
+      template: path.join(__dirname, "client", "signup.html"),
     }),
     new ESLintPlugin(),
   ],

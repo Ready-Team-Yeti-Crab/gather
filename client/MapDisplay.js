@@ -47,11 +47,11 @@ function MapDisplay() {
     </LoadScript>
   )
 }
-const HangTypes ={
-foodAndFun : "bar",
-study : "cafe",
-activity : "tourist_attraction",
-}
+// const HangTypes ={
+// foodAndFun : "bar",
+// study : "cafe",
+// activity : "tourist_attraction",
+// }
 
 
 
