@@ -1,9 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-	totalUsers=[];
-	selectedUsers=[];
-};
+const initialState = {};
 
 //https://redux-toolkit.js.org/tutorials/quick-start
 
@@ -11,9 +8,9 @@ export const mainPageSlice = createSlice({
 	name: 'mainPage',
 	initialState,
 	reducers: {
-		gather: (state) => {
-			//dosomething
-		},
+		// gather: (state) => {
+		//dosomething
+		// },
 	},
 });
 

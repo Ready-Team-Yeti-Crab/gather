@@ -14,7 +14,7 @@ export default function LoginPage() {
 	let location = '';
 	return (
 		<div>
-			hi
+			This is LoginPage.js
 			<div id='loginWrapper'>
 				<input
 					type='text'
@@ -26,16 +26,23 @@ export default function LoginPage() {
 					placeholder='Password'
 					onChange={(e) => (password = e.target.value)}
 				></input>
-				<input 
-				type='test'
-				placeholder='Location'
-				onChange={(e) => (location = e.target.value)}/>
+				<input
+					type='test'
+					placeholder='Location'
+					onChange={(e) => (location = e.target.value)}
+				/>
 				<br />
 
 				<button
 					label='Register'
 					onClick={() =>
-						dispatch(register({ username: username, password: password, location: location }))
+						dispatch(
+							register({
+								username: username,
+								password: password,
+								location: location,
+							})
+						)
 					}
 				>
 					Register

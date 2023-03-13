@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserIconContainer } from '../userIconContainer/UserIconContainer';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { gather, login } from './mainPageSlice';
 // import './loginPage.scss';
@@ -12,8 +13,9 @@ export default function LoginPage() {
 
 	return (
 		<div>
-			hi!
+			This is MainPage.js
 			<div id='mainWrapper'>
+				<UserIconContainer />
 				{/* {googleMap}
 				<button
 					label='Gather'
