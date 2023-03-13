@@ -64,21 +64,17 @@ module.exports = {
       publicPath: "/",
     },
 
-    // proxy: {
-    //   '/api/**': {
-    //     target: 'http://localhost:3000/',
-    //     secure: false,
-    //   },
+    proxy: {
+      '/': {
+        target: 'http://localhost:3000/',
+      }
   },
+},
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.join(__dirname, "client", "index.html"),
     }),
-    new HtmlWebpackPlugin({
-      filename: "signup.html",
-      template: path.join(__dirname, "client", "signup.html"),
-    }),
     new ESLintPlugin(),
   ],
-};
+}

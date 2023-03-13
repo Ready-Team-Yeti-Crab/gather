@@ -21,7 +21,11 @@ export const UserIconContainer = () => {
 	} else if (isSuccess) {
 		myWonderfulListofFriends = friends.friendList.slice();
 		content = myWonderfulListofFriends.map((friend) => (
-			<UserIcon key={friend._id} username={friend.username} />
+			<UserIcon
+				key={friend._id}
+				username={friend.username}
+				location={friend.location.geo}
+			/>
 		));
 	} else if (isError) {
 		content = <div>{error.toString()}</div>;

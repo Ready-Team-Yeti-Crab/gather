@@ -6,9 +6,7 @@ import {useSelector} from 'react-redux'
 
 
 function findMidpoint(arrayOfGeocodes){
-  const originCoords = useSelector((state)=> state.userIcon.addedToSessions)
-  console.log('this is origin Coords',originCoords)
-  
+
   
   // variables to hold the sum of
   let xSums = 0;
@@ -27,24 +25,24 @@ function findMidpoint(arrayOfGeocodes){
   }
 }
 
-let label = [];
-const generateLabel = async () =>{
+// let label = [];
+// const generateLabel = async () =>{
 
-    axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.883166%2C-73.853427&radius=1500&type=restaurant&key=AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o')
-    .then((data)=> {
-        let name = data.data.results[0]['name'];
-        let address = data.data.results[0]['vicinity'];
-        console.log(name, address)
-        label.push(`${name} ${address}`);
-    })
+//     axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.883166%2C-73.853427&radius=1500&type=restaurant&key=AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o')
+//     .then((data)=> {
+//         let name = data.data.results[0]['name'];
+//         let address = data.data.results[0]['vicinity'];
+//         console.log(name, address)
+//         label.push(`${name} ${address}`);
+//     })
     
-}
-generateLabel()
-console.log('label',label)
+// }
+// generateLabel()
+// console.log('label',label)
 
 
 // Pull from state
-const coordinates = [{lat : 40.71326030739842, lng: -74.00728359309215}, {lat : 40.74382577221735, lng: -73.99384133506773}]
+// const coordinates = [{lat : 40.71326030739842, lng: -74.00728359309215}, {lat : 40.74382577221735, lng: -73.99384133506773}]
 
 
 
@@ -71,6 +69,7 @@ const onLoad = marker => {
 }
 
 function MapDisplay() {
+  const originCoords = useSelector((state)=> state.userIcon.addedToSession)
 
   return (
     <>
@@ -80,16 +79,19 @@ function MapDisplay() {
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={findMidpoint(coordinates)}
+        center={{
+          lat : 40.74763969089943, 
+          lng : -73.99310904334705
+        }}
         zoom={18}
       >
         <Marker 
               onLoad={onLoad}
-              position={findMidpoint(coordinates)}
+              position={Object.values(originCoords)}
               animation="bounce"
               // icon = "https://pbs.twimg.com/profile_images/443395572783800322/nXTuit5o_400x400.jpeg"
               label = {{
-                text: {label},
+                text: 'Marker',
                 color: "#4682B4",
                 fontSize: "16px",
                 fontWeight: "bold",
