@@ -50,6 +50,8 @@ app.get("/", loginController.isLoggedIn, (req, res) => {
     .sendFile(path.resolve(__dirname, "../dist/index.html"));
 });
 
+  
+
 // Sign Up Request
 app.post('/signup', loginController.createUser, loginController.setSSIDCookie, loginController.startSession, (req, res) => {
   res.status(200).redirect('/main')
