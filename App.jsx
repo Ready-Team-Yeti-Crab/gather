@@ -1,8 +1,10 @@
+
 import React, { useEffect } from "react";
 import MapDisplay from "./client/features/MapDisplay";
 import axios from 'axios'
 // import Counter from "./client/features/counter/Counter"
 import LoginPage from "./client/features/loginPage/LoginPage"
+
 
 function App() {
 	// Going to do useEffect so that, on render, it pulls the information on which page to go to
@@ -36,15 +38,15 @@ function App() {
 			})
 	}, [])
 	return (
-    <>
-		<div id='app'>
-			REACT APP LOADED
-			{/* <Counter /> */}
-			<LoginPage />
-      {/* <MapDisplay /> */}
-		</div>
-    </>
-  )
+
+		<>
+			<div id='app'>
+				REACT APP LOADED
+				<LoginPage />
+				<MapDisplay />
+			</div>
+		</>
+	);
 }
 
 export default App;
