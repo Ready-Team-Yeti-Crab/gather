@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from './updateUserInfoSlice';
+import { changeCurrentLocation } from './updateUserInfoSlice';
 
 export function updateUserInfo() {
   const count = useSelector((state) => state.counter.value);
@@ -11,16 +11,9 @@ export function updateUserInfo() {
       <div>
         <button
           aria-label='Submit Location'
-          onClick={() => dispatch(increment())}
+          onClick={() => dispatch(changeCurrentLocation())}
         >
-          Increment
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label='Decrement value'
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
+          Change Location
         </button>
       </div>
     </div>

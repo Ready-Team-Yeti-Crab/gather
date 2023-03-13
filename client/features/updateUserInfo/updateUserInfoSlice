@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const updateUserInfoInitialState = {
-	profilePicture: '',
-    currentLocation: 
+const initialState = {
+	userName: '',
+    currentLocation:  
 };
 
 //https://redux-toolkit.js.org/tutorials/quick-start
@@ -10,16 +10,17 @@ const updateUserInfoInitialState = {
 //export default counterSlice
 export const updateUserInfoSlice = createSlice({
 	name: 'updateUserInfo',
-	updateUserInfoInitialState,
+	initialState,
 	reducers: {
-		changeProfilePicture: (state) => {
-			// Redux Toolkit allows us to write "mutating" logic in reducers. It
-			// doesn't actually mutate the state because it uses the Immer library,
-			// which detects changes to a "draft state" and produces a brand new
-			// immutable state based off those changes
-			state.profilePicture += 1;
-		},
+		// changeProfilePicture: (state) => {
+		// 	// Redux Toolkit allows us to write "mutating" logic in reducers. It
+		// 	// doesn't actually mutate the state because it uses the Immer library,
+		// 	// which detects changes to a "draft state" and produces a brand new
+		// 	// immutable state based off those changes
+		// 	state.profilePicture += 1;
+		// },
 	    changeCurrentLocation: (state) => {
+
 			// This example adds a search box to a map, using the Google Place Autocomplete
 			// feature. People can enter geographical searches. The search box will return a
 			// pick list containing a mix of places and predicted search terms.
@@ -103,6 +104,6 @@ export const updateUserInfoSlice = createSlice({
 			});
 
 // Action creators are generated for each case reducer function
-export const { profilePicture, currentLocation} = updateUserInfoSlice.actions;
+export const { profilePicture, changeCurrentLocation} = updateUserInfoSlice.actions;
 
 export default updateUserInfoSlice.reducer;
