@@ -31,23 +31,7 @@ app.get("/", (req, res) => {
     .sendFile(path.resolve(__dirname, "../dist/index.html"));
 });
 
-const key = 'AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o'
-app.get('/restaurants', async (req, res, next) => {
- try {
-   const neighborhood = 'chelsea'
-   const borough = 'manhattan'
-   const city = 'new+york+city'
-   const category = 'burgers'
-   const {data} = await axios.get(
-`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${category}+${neighborhood}+${borough}+${city}&type=restaurant&key=${key}`
-   )
-   res.json(data)
-   } 
- catch (err) {
-  next(err)
-}
-})
-
+  
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
