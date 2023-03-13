@@ -1,13 +1,18 @@
 import React from "react";
-import MapDisplay from "./client/MapDisplay";
 
 function App() {
-  return (
+	return (
     <>
-    <div id="app">REACT APP LOADED</div>
+    (
+		<div id='app'>
+			REACT APP LOADED
+			<Counter />
+			<LoginPage />
     <MapDisplay />
+		</div>
     </>
-  );
+  )
+	);
 }
 
 export default App;
