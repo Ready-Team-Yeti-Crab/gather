@@ -1,6 +1,8 @@
 import React from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
+
+
 // DOCUMENTATION
 // Places API 
 // https://developers.google.com/maps/documentation/places/web-service/search-nearby
@@ -9,6 +11,38 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 // https://react-google-maps-api-docs.netlify.app/
 
 
+function findMidpoint(arrayOfGeocodes){
+
+  // variables to hold the sum of
+  let xSums = 0;
+  let ySums = 0;
+  let numOfLocations = arrayOfGeocodes.length
+
+  // finds the sums of x and y
+  arrayOfGeocodes.forEach((currCords)=>{
+      xSums += Number(currCords.lat)
+      ySums += Number(currCords.lng)
+  })
+
+  return {
+      lat : xSums / numOfLocations,
+      lng : ySums / numOfLocations
+  }
+}
+
+const coordinates = [{lat : 40.71326030739842, lng: -74.00728359309215}, {lat : 40.74382577221735, lng: -73.99384133506773}]
+
+
+// const generateHang = async ()=>{
+//   let coords = findMidpoint(coordinates);
+//   const hangLocation = await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coords}&radius=1500&type=restaurant&key=AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o`)
+  
+//   return `${hangLocation.data.results[0]['name']} ${hangLocation.data.results[0]['vicinity']}`
+// }
+
+// const description = generateHang();
+// console.log(description)
+
 const containerStyle = {
   width: '800px',
   height: '800px',
@@ -16,30 +50,33 @@ const containerStyle = {
   border: '1px solid grey'
 };
 
-const center = {
-  lat: 40.747592210736535,
-  lng: -73.99312081547488
-};
 
 const onLoad = marker => {
   console.log('marker: ', marker)
 }
 
 function MapDisplay() {
+
   return (
     <LoadScript
       googleMapsApiKey='AIzaSyAqXxaH6gF-h75feDtCx12dYpMkjdQL_1o'
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={findMidpoint(coordinates)}
         zoom={18}
       >
         <Marker 
               onLoad={onLoad}
-              position={center}
+              position={findMidpoint(coordinates)}
               animation="bounce"
-              clickableIcons='./assets/gather_logo.png'
+              // icon = "https://pbs.twimg.com/profile_images/443395572783800322/nXTuit5o_400x400.jpeg"
+              label = {{
+                text: 'Label',
+                color: "#4682B4",
+                fontSize: "16px",
+                fontWeight: "bold",
+              }}
 
 
         />
