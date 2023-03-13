@@ -1,16 +1,16 @@
 import React from "react";
 import MapDisplay from "./client/features/MapDisplay";
-import Counter from "./client/features/counter/Counter"
 import LoginPage from "./client/features/loginPage/LoginPage"
+import { UserIcon } from "./client/features/userIcon/UserIcon";
 
 function App() {
 	return (
     <>
 		<div id='app'>
-			REACT APP LOADED
-			<Counter />
+			Gather
 			<LoginPage />
-    <MapDisplay />
+			<MapDisplay />
+			<UserIcon />
 		</div>
     </>
   )

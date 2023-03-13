@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { register, login } from './loginPageSlice';
 
-export function LoginPage() {
+export default function LoginPage() {
 	//subscribe to alert state
 	// const count = useSelector((state) => state.counter.value);
 	const dispatch = useDispatch();
