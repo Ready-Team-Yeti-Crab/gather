@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = {
+  componentRender: ''
+};
 
 //https://redux-toolkit.js.org/tutorials/quick-start
 
@@ -25,10 +27,18 @@ export const loginPageSlice = createSlice({
 				body: JSON.stringify(action.payload),
 			}).then((res) => console.log(res));
 		},
+    pageRender: (state, action) => {
+      if (action.payload === 'signup') {
+        state.componentRender = 'LoginPage'
+      }
+      if (action.payload === 'main') {
+        state.componentRender = 'MapDisplay'
+      }
+    }
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { register, login } = loginPageSlice.actions;
+export const { register, login, pageRender } = loginPageSlice.actions;
 
 export default loginPageSlice.reducer;
