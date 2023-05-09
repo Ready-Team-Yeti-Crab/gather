@@ -31,7 +31,9 @@ function App() {
 	return (
 		<>
 			<div id='app'>
-				REACT APP LOADED
+				<h1>
+				GATHER
+				</h1>
 				{renderComp}
 				{/* <LoginPage />
 				<MapDisplay /> */}
